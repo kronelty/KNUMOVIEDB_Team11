@@ -14,7 +14,7 @@
 <body>
 	
     <%
-    String serverIP = "1.209.19.31";
+    String serverIP = "1.209.19.42";
 	String strSID = "orcl";
 	String portNum = "1521";
 	String user = "knumovie";
@@ -51,8 +51,8 @@
 		{
 			%><div class="admin">
 				<div class="admin-items">관리자모드</div>
-          		<div class="admin-items" style="cursor:pointer;">영상물 등록</div>
-         		<div class="admin-items" style="cursor:pointer;">영상물 수정</div>
+          		<div class="admin-items" Onclick="location.href='admin-insert-movie.jsp'" style="cursor:pointer;">영상물 등록</div>
+         		<div class="admin-items" Onclick="location.href='admin-update-movie.html'" style="cursor:pointer;">영상물 수정</div>
          	  </div>
          	  <div class="nav-items" Onclick="location.href='admin-evaluation-confirm.jsp'" style="cursor:pointer; color:blue; font-weight:bolder;">모든 평가내역 확인</div>
 			<%

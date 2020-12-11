@@ -16,7 +16,7 @@
       <div class="title">Knu Movie DB</div>
     </div>
 <%
-	String serverIP = "1.209.19.31";
+	String serverIP = "1.209.19.42";
 	String strSID = "orcl";
 	String portNum = "1521";
 	String user = "knumovie";
