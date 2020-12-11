@@ -1,0 +1,84 @@
+.nav{
+  height: 70px;
+  border-bottom: 1px solid black;
+  display:flex;
+  align-items:center;
+}
+.title{
+  font-size:50px;
+  font-weight: bold;
+  text-align: center;
+}
+.nav-right-items{
+  display: flex;
+  margin-left:auto;
+  align-items: center;
+}
+.nav-items{
+  margin-left:15px;
+}
+.admin{
+  margin-left:20px;
+}
+.admin-items{
+  font-weight:bolder;
+  text-align:center;
+  color: blue;
+}
+
+.main{
+  width : 800px;
+  height: 600px;
+  margin : 0 auto;
+  margin-top: 100px;
+}
+
+.info{
+	display:flex;
+	align-self:center;
+	margin : 0 auto;
+	margin-top : 100px;
+}
+.info-items{
+	margin-left:100px;
+}
+.withdraw{
+	font-weight:bold;
+	text-align:center;
+	color:red;
+}
+
+.select{
+	display:flex;
+}
+.select-items{
+	width:300px;
+	height:300px;
+	border: 1px solid black;
+	margin : 20px;
+	border-radius:4px;
+	text-align:center;
+}
+.select-items-title{
+	font-size:1.5rem;
+	background: rgba(0,0,0,.03);
+	text-align:center;
+	height:53px;
+	line-height:53px;
+	border-bottom: 1px solid black;
+}
+.select-items-detail{
+	margin-top:10px;
+	height:160px;
+}
+.select-items-btton{
+	padding: .5rem 1rem;
+	font-size: 1.25rem;
+	line-height:1.5;
+	border-radius:.3rem;
+	color : #007bff;
+	background-color:transparent;
+	background-image:none;
+	border-color : #007bff;
+	margin-bottom:5px;
+}
