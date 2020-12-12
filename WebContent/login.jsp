@@ -14,11 +14,11 @@
 <body>
 	
     <%
-    String serverIP = "1.209.19.42";
+    String serverIP = "localhost";
 	String strSID = "orcl";
 	String portNum = "1521";
-	String user = "knumovie";
-	String pass = "knumovie";
+	String user = "university";
+	String pass = "comp322";
 	String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
 	
 	Connection conn = null;
@@ -31,122 +31,125 @@
 	
 	conn.setAutoCommit(false);
 	stmt = conn.createStatement();
+    %>
     
+    <%
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
     int isAdmin;
 	
 	sql = "SELECT * FROM ACCOUNT WHERE ID='" + id + "' AND PW='" + pw + "'";
 	rs = stmt.executeQuery(sql);
-	if(rs.next()) // ë¡œê·¸ì¸ ì„±ê³µ
-	{%>
+	if(rs.next()) // ·Î±×ÀÎ ¼º°ø
+	{
+	%>
 	<div class="nav">
       		<div class="title">Knu Movie DB</div>
       		<div class="nav-right-items">
         		
 	<%
-		//ê´€ë¦¬ìì¸ì§€ ì•„ë‹Œì§€ ì²´í¬í•˜ê¸°
+		//°ü¸®ÀÚÀÎÁö ¾Æ´ÑÁö Ã¼Å©ÇÏ±â
 		isAdmin = rs.getInt(10);
-		if(isAdmin == 1)// ê´€ë¦¬ì
-		{
-			%><div class="admin">
-				<div class="admin-items">ê´€ë¦¬ìëª¨ë“œ</div>
-          		<div class="admin-items" Onclick="location.href='admin-insert-movie.jsp'" style="cursor:pointer;">ì˜ìƒë¬¼ ë“±ë¡</div>
-         		<div class="admin-items" Onclick="location.href='admin-update-movie.html'" style="cursor:pointer;">ì˜ìƒë¬¼ ìˆ˜ì •</div>
-         	  </div>
-         	  <div class="nav-items" Onclick="location.href='admin-evaluation-confirm.jsp'" style="cursor:pointer; color:blue; font-weight:bolder;">ëª¨ë“  í‰ê°€ë‚´ì—­ í™•ì¸</div>
-			<%
-		}
-		else// ì¼ë°˜íšŒì›
+		if(isAdmin == 1)// °ü¸®ÀÚ
 		{
 			%>
-			  <div class="nav-items" Onclick="location.href='evaluation-confirm.jsp?id=<%=id%>'" style="cursor:pointer;">í‰ê°€ë‚´ì—­ í™•ì¸</div>
+			<div class="admin">
+				<div class="admin-items">°ü¸®ÀÚ¸ğµå</div>
+          		<div class="admin-items" Onclick="location.href='admin-insert-movie.jsp'" style="cursor:pointer;">¿µ»ó¹° µî·Ï</div>
+         		<div class="admin-items" Onclick="location.href='admin-update-movie.html'" style="cursor:pointer;">¿µ»ó¹° ¼öÁ¤</div>
+         	  </div>
+         	  <div class="nav-items" Onclick="location.href='admin-evaluation-confirm.jsp'" style="cursor:pointer; color:blue; font-weight:bolder;">¸ğµç Æò°¡³»¿ª È®ÀÎ</div>
 			<%
 		}
-	%>  	<div class="nav-items" Onclick="location.href='info.jsp?id=<%=id%>'" style="cursor:pointer;">ë‚´ ì •ë³´</div>
-      		<div class="nav-items" Onclick="location.href='start.html'" style="cursor:pointer;">ë¡œê·¸ì•„ì›ƒ</div>
+		else// ÀÏ¹İÈ¸¿ø
+		{
+			%>
+			  <div class="nav-items" Onclick="location.href='evaluation-confirm.jsp?id=<%=id%>'" style="cursor:pointer;">Æò°¡³»¿ª È®ÀÎ</div>
+			<%
+		}
+	%>  	<div class="nav-items" Onclick="location.href='info.jsp?id=<%=id%>'" style="cursor:pointer;">³» Á¤º¸</div>
+      		<div class="nav-items" Onclick="location.href='start.html'" style="cursor:pointer;">·Î±×¾Æ¿ô</div>
       		</div>
    		</div>
    		<div class="main">
    			<div class="select">
    			<div class="select-items">
-   				<div class="select-items-title">ì „ì²´ ëª©ë¡ ë³´ê¸°</div>
-   				<div class="select-items-detail">ì˜ìƒë¬¼ì˜ ì „ì²´ ëª©ë¡ì„ ë¶ˆëŸ¬ì˜µë‹ˆë‹¤.</div>
-   				<button class="select-items-btton">Click me</button>
+   				<div class="select-items-title">ÀüÃ¼¸ñ·Ï º¸±â</div>
+   				<div class="select-items-detail">¿µ»ó¹°ÀÇ ÀüÃ¼ ¸ñ·ÏÀ» ºÒ·¯¿É´Ï´Ù.</div>
+   				<button class="select-items-btton" style="cursor:pointer;" Onclick="location.href='MovieView.jsp?id=<%=id%>&isAdmin=<%=isAdmin%>'">ºÒ·¯¿À±â</button>
    			</div>
    			<div class="select-items">
-   				<div class="select-items-title">ì œëª©ìœ¼ë¡œ ê²€ìƒ‰</div>
-   				<div class="select-items-detail">ì œëª©ìœ¼ë¡œ ë“±ë¡ëœ ì˜ìƒë¬¼ì„ ê²€ìƒ‰í•©ë‹ˆë‹¤.</div>
-   				<button class="select-items-btton">Click me</button>
+   				<div class="select-items-title">Á¦¸ñÀ¸·Î °Ë»ö</div>
+   				<div class="select-items-detail">Á¦¸ñÀ¸·Î µî·ÏµÈ ¿µ»ó¹°À» °Ë»öÇÕ´Ï´Ù.</div>
+   				<button class="select-items-btton" style="cursor:pointer;" Onclick="location.href='MovieSearch.jsp?id=<%=id%>&isAdmin=<%=isAdmin%>'">°Ë»öÇÏ±â</button>
    			</div>
    			<div class="select-items">
-   				<div class="select-items-title">íŠ¹ì •ì¡°ê±´ ê²€ìƒ‰</div>
-   				<div class="select-items-detail">íŠ¹ì • ì¡°ê±´ìœ¼ë¡œ ì˜ìƒë¬¼ì„ ê²€ìƒ‰í•©ë‹ˆë‹¤. ì¥ë¥´ë³„, ë‚˜ë¼ë³„ ê²€ìƒ‰ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.</div>
-   				<button class="select-items-btton">Click me</button>
+   				<div class="select-items-title">Æ¯Á¤Á¶°Ç °Ë»ö</div>
+   				<div class="select-items-detail">Æ¯Á¤ Á¶°ÇÀ¸·Î ¿µ»ó¹°À» °Ë»öÇÕ´Ï´Ù. Àå¸£º°, ³ª¶óº° °Ë»öÀÌ °¡´ÉÇÕ´Ï´Ù.</div>
+   				<button class="select-items-btton" style="cursor:pointer;" Onclick="location.href='MovieSearchSpecial.jsp?id=<%=id%>&isAdmin=<%=isAdmin%>'">°Ë»öÇÏ±â</button>
    			</div>
-   			</div>
-   		</div>
-	
-   		<%
-   		sql = "SELECT Score FROM RATING WHERE ID='" + id + "'";
-   		rs = stmt.executeQuery(sql);
-   		if(!rs.next())
-   		{ %>
-   		
-   		<div class="select-items">
-   			<div class="select-items-title">ì˜í™” ì¶”ì²œ</div>
-   			<div class="select-items-detail">ì¥ë¥´ë¥¼ ê³ ë¥´ì‹œë©´<br>ì˜í™”ë¥¼ ì¶”ì²œí•´ë“œë¦½ë‹ˆë‹¤.</div>
-   			<form action="recommend.jsp?id=<%=id %>" method="post">
-   				genre <select name="genre">
-       			<option value="Action">Action</option>
-      			<option value="Adult">Adult</option>
-      			<option value="Adventure">Adventure</option>
-      			<option value="Animation">Animation</option>
-      			<option value="Biography">Biography</option>
-      			<option value="Comedy">Comedy</option>
-      			<option value="Crime">Crime</option>
-      			<option value="Documentary">Documentary</option>
-      			<option value="Drama">Drama</option>
-      			<option value="Family">Family</option>
-      			<option value="Fantasy">Fantasy</option>
-      			<option value="Film-Noir">Film-Noir</option>
-      			<option value="Game-Show">Game-Show</option>
-      			<option value="History">History</option>
-      			<option value="Horror">Horror</option>
-      			<option value="Music">Music</option>
-      			<option value="Musical">Musical</option>
-      			<option value="Mystery">Mystery</option>
-      			<option value="News">News</option>
-      			<option value="Reality-TV">Reality-TV</option>
-      			<option value="Romance">Romance</option>
-      			<option value="Sci-Fi">Sci-Fi</option>
-      			<option value="Short">Short</option>
-      			<option value="Sport">Sport</option>
-      			<option value="Talk-Show">Talk-Show</option>
-      			<option value="Thriller">Thriller</option>
-      			<option value="War">War</option>
-      			<option value="Western">Western</option>
-     			</select> <br/>
-				<button class="select-items-btton" type="submit">ì¶”ì²œ ì˜í™” ë³´ê¸°</button>
-			</form>
+   			<%
+         sql = "SELECT Score FROM RATING WHERE ID='" + id + "'";
+         rs = stmt.executeQuery(sql);
+         if(!rs.next())
+         { %>
+         <div class="select-items">
+            	<div class="select-items-title">¿µÈ­ ÃßÃµ</div>
+            	<div class="select-items-detail">Àå¸£¸¦ °í¸£½Ã¸é ¿µÈ­¸¦ ÃßÃµÇØµå¸³´Ï´Ù.</div>
+            	<form action="recommend.jsp?id=<%=id %>" method="post">
+               genre <select name="genre">
+               <option value="Action">Action</option>
+               <option value="Adult">Adult</option>
+               <option value="Adventure">Adventure</option>
+               <option value="Animation">Animation</option>
+               <option value="Biography">Biography</option>
+               <option value="Comedy">Comedy</option>
+               <option value="Crime">Crime</option>
+               <option value="Documentary">Documentary</option>
+               <option value="Drama">Drama</option>
+               <option value="Family">Family</option>
+               <option value="Fantasy">Fantasy</option>
+               <option value="Film-Noir">Film-Noir</option>
+               <option value="Game-Show">Game-Show</option>
+               <option value="History">History</option>
+               <option value="Horror">Horror</option>
+               <option value="Music">Music</option>
+               <option value="Musical">Musical</option>
+               <option value="Mystery">Mystery</option>
+               <option value="News">News</option>
+               <option value="Reality-TV">Reality-TV</option>
+               <option value="Romance">Romance</option>
+               <option value="Sci-Fi">Sci-Fi</option>
+               <option value="Short">Short</option>
+               <option value="Sport">Sport</option>
+               <option value="Talk-Show">Talk-Show</option>
+               <option value="Thriller">Thriller</option>
+               <option value="War">War</option>
+               <option value="Western">Western</option>
+              </select> <br/>
+            <button class="select-items-btton" type="submit">ÃßÃµ¿µÈ­</button>
+         	</form>
+         	</div>
+   			</div>	
    		</div>
    		
-	<%
-		}
-	}
-	else // ë¡œê·¸ì¸ ì‹¤íŒ¨
+   		
+	<%	
+	}}
+	else // ·Î±×ÀÎ ½ÇÆĞ
 	{
 		%>
 		<div class="nav">
       		<div class="title">Knu Movie DB</div>
     	</div>
     	<% 
-    	out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨");
+    	out.println("·Î±×ÀÎ ½ÇÆĞ");
     	%>
     	<a href="start.html">Go to home</a>   	
     	<% 
 	}
-    
+    %>
+    <%
 	stmt.close();
 	rs.close();
 	//pstmt.close();

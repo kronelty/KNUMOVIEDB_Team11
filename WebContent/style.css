@@ -59,6 +59,15 @@
 	border-radius:4px;
 	text-align:center;
 }
+.select-items2{
+	width:800px;
+	height:150px;
+	border: 1px solid black;
+	margin : 20px;
+	border-radius:4px;
+	text-align:center;
+}
+
 .select-items-title{
 	font-size:1.5rem;
 	background: rgba(0,0,0,.03);
@@ -69,7 +78,7 @@
 }
 .select-items-detail{
 	margin-top:10px;
-	height:160px;
+	height:50px;
 }
 .select-items-btton{
 	padding: .5rem 1rem;
